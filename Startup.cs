@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AspNetCoreChannelsAndBackgroundServices.BackgroundServices;
+using Coravel;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,6 +29,9 @@ namespace AspNetCoreChannelsAndBackgroundServices
 
             services.AddSingleton<OrderProcessingChannel>();
             services.AddHostedService<FileCreatorService>();
+
+            services.AddScheduler();
+            services.AddTransient<FileCheckerService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
